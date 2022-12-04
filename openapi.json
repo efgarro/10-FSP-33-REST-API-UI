@@ -1,0 +1,229 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Soy Costa Rica API",
+    "description": "Swagger Practice",
+    "contact": {
+      "name": "efgarro",
+      "email": "efgarro@yahoo.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://soy-crc-10-fsp-33-rest-api.azurewebsites.net",
+      "description": "Azure Site"
+    },
+    {
+      "url": "http://localhost:{port}",
+      "variables": {
+        "port": {
+          "default": "4000"
+        }
+      },
+      "description": "Local Dev Env"
+    }
+  ],
+  "paths": {
+    "/countries": {
+      "description": "Get list of subscribers countries",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of country objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/country"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/user_roles": {
+      "description": "Get list of user roles",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A JSON array of user roles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user_role"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/users": {
+      "description": "Get list of users (subscribers, editors, administrators)",
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/PageLimit"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A JSON array of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/users"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "PageLimit": {
+        "name": "limit",
+        "in": "query",
+        "description": "Limits the number of items on a page",
+        "schema": {
+          "type": "integer"
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "country": {
+        "type": "object",
+        "properties": {
+          "country_id": {
+            "type": "string",
+            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+          },
+          "country_name": {
+            "type": "string",
+            "example": "New Zealand"
+          }
+        }
+      },
+      "user_role": {
+        "type": "object",
+        "properties": {
+          "user_role_id": {
+            "type": "string",
+            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+          },
+          "user_role_name": {
+            "type": "string",
+            "example": "Editor"
+          }
+        }
+      },
+      "users": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+          },
+          "email": {
+            "type": "string",
+            "example": "efgarro@bijalapa.com"
+          },
+          "hash": {
+            "type": "string",
+            "example": "2264bd2785ca8c76c7311790eebcba6b2fc8104d010b37bb4cdf58d8954ae50677a72de94d7ffffd521077aa2f3b287e366677cfd4b6c988f308922462c13aeb"
+          },
+          "salt": {
+            "type": "string",
+            "example": "3938c02d4d3aacf6874fed1a3a3c4914f47dd6d91ebd3f6fb5adef573adf8fab"
+          },
+          "user_role_name": {
+            "type": "string",
+            "example": "subscriber"
+          },
+          "country_name": {
+            "type": "string",
+            "example": "New Zealand"
+          },
+          "is_active": {
+            "type": "boolean",
+            "example": true
+          },
+          "first_name": {
+            "type": "string",
+            "example": "Andre"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Le Grand"
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "8ac1c063-6758-475e-1372-49d8c30e4e00"
+                },
+                "url": {
+                  "type": "string",
+                  "example": "https://imagedelivery.net/KuVp-L0ue-dbspqdyuGkJw/8ac1c063-6758-475e-1372-49d8c30e4e00/regular"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "400Error": {
+        "description": "Invalid request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
