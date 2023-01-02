@@ -25,6 +25,428 @@
     }
   ],
   "paths": {
+    "/register/user": {
+      "description": "Registers New User",
+      "post": {
+        "summary": "Registers a user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registerUser_req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A JSON array of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/registerUser_res"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/login": {
+      "description": "Login into SCR",
+      "post": {
+        "summary": "Login a user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login_req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A JSON array of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/login_res"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/register/restaurant": {
+      "description": "Registers a Restaurant",
+      "post": {
+        "summary": "Registers a Restaurant",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registerResta_req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Confirmation Message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/registerPlace_res"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/register/lodging": {
+      "description": "Registers a Lodging Place",
+      "post": {
+        "summary": "Registers a Lodging Place",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registerLodge_req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Confirmation Message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/registerPlace_res"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/register/waterfall": {
+      "description": "Registers a Waterfall",
+      "post": {
+        "summary": "Registers a Waterfall",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registerWfall_req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Confirmation Message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/registerPlace_res"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/users": {
+      "description": "Get list of users",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listLimit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user_res"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "description": "Get list of users",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/UserId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON object of user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user_res"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/restaurants": {
+      "description": "Get list of restaurants",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listLimit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of restaurants",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resta_res"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/restaurants/{place_id}": {
+      "description": "Get a restaurant",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PlaceId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON object of restaurant with given place_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/resta_res"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/lodging": {
+      "description": "Get list of lodging places",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listLimit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of lodging",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/lodge_res"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/lodging/{place_id}": {
+      "description": "Get a lodging place",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PlaceId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON object of lodge with given place_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/lodge_res"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/waterfalls": {
+      "description": "Get list of waterfalls",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listLimit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of waterfalls",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wfall_res"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/waterfalls/{place_id}": {
+      "description": "Get a waterfall",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PlaceId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON object waterfall with given place_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/wfall_res"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
     "/countries": {
       "description": "Get list of subscribers countries",
       "get": {
@@ -41,7 +463,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/country"
+                    "$ref": "#/components/schemas/country_res"
                   }
                 }
               }
@@ -53,9 +475,14 @@
         }
       }
     },
-    "/user_roles": {
+    "/user-roles": {
       "description": "Get list of user roles",
       "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "A JSON array of user roles",
@@ -64,7 +491,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/user_role"
+                    "$ref": "#/components/schemas/user_role_res"
                   }
                 }
               }
@@ -76,23 +503,51 @@
         }
       }
     },
-    "/users": {
-      "description": "Get list of users (subscribers, editors, administrators)",
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/PageLimit"
-        }
-      ],
+    "/hubs": {
+      "description": "Get list of Hub Cities/Towns",
       "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
-            "description": "A JSON array of users",
+            "description": "A JSON array of hub objects",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/users"
+                    "$ref": "#/components/schemas/hub_res"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/schema-types": {
+      "description": "Get list of Hub Cities/Towns",
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of hub objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/schema_type_res"
                   }
                 }
               }
@@ -107,12 +562,30 @@
   },
   "components": {
     "parameters": {
-      "PageLimit": {
+      "listLimit": {
         "name": "limit",
         "in": "query",
-        "description": "Limits the number of items on a page",
+        "description": "Limits the number of items to display",
         "schema": {
           "type": "integer"
+        }
+      },
+      "UserId": {
+        "name": "user_id",
+        "required": true,
+        "in": "path",
+        "description": "UUID",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "PlaceId": {
+        "name": "place_id",
+        "required": true,
+        "in": "path",
+        "description": "UUID",
+        "schema": {
+          "type": "string"
         }
       }
     },
@@ -124,62 +597,266 @@
       }
     },
     "schemas": {
-      "country": {
+      "registerUser_req": {
         "type": "object",
         "properties": {
-          "country_id": {
+          "first_name": {
             "type": "string",
-            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+            "example": "Andre"
           },
-          "country_name": {
+          "last_name": {
             "type": "string",
-            "example": "New Zealand"
-          }
-        }
-      },
-      "user_role": {
-        "type": "object",
-        "properties": {
-          "user_role_id": {
-            "type": "string",
-            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
-          },
-          "user_role_name": {
-            "type": "string",
-            "example": "Editor"
-          }
-        }
-      },
-      "users": {
-        "type": "object",
-        "properties": {
-          "user_id": {
-            "type": "string",
-            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+            "example": "Le Grand"
           },
           "email": {
             "type": "string",
             "example": "efgarro@bijalapa.com"
           },
-          "hash": {
+          "password": {
             "type": "string",
-            "example": "2264bd2785ca8c76c7311790eebcba6b2fc8104d010b37bb4cdf58d8954ae50677a72de94d7ffffd521077aa2f3b287e366677cfd4b6c988f308922462c13aeb"
+            "example": "Due427andre"
           },
-          "salt": {
+          "user_role": {
             "type": "string",
-            "example": "3938c02d4d3aacf6874fed1a3a3c4914f47dd6d91ebd3f6fb5adef573adf8fab"
+            "example": "Subscriber"
           },
-          "user_role_name": {
+          "country_of_origin": {
             "type": "string",
-            "example": "subscriber"
+            "example": "Canada"
           },
-          "country_name": {
+          "image_url": {
             "type": "string",
-            "example": "New Zealand"
-          },
-          "is_active": {
+            "example": "http://imagery.scr.all.chechen"
+          }
+        }
+      },
+      "registerUser_res": {
+        "type": "object",
+        "properties": {
+          "success": {
             "type": "boolean",
             "example": true
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+              },
+              "email": {
+                "type": "string",
+                "example": "efgarro@bijalapa.com"
+              },
+              "hash": {
+                "type": "string",
+                "example": "2264bd2785c...308922462c13aeb"
+              },
+              "salt": {
+                "type": "string",
+                "example": "3938c02d4d3...5adef573adf8fab"
+              }
+            }
+          }
+        }
+      },
+      "registerResta_req": {
+        "type": "object",
+        "properties": {
+          "hub_tag": {
+            "type": "string",
+            "example": "perzel"
+          },
+          "schema_type_tag": {
+            "type": "string",
+            "example": "resta"
+          },
+          "name": {
+            "type": "string",
+            "example": "La Casona de Chayo"
+          },
+          "description": {
+            "type": "string",
+            "example": "Located near and around the..."
+          },
+          "telephone": {
+            "type": "string",
+            "example": "8339-3065"
+          },
+          "email": {
+            "type": "string",
+            "example": "contact@gmail.com"
+          },
+          "opening_hours": {
+            "type": "string",
+            "example": "7am to 5pm"
+          },
+          "price_range": {
+            "type": "string",
+            "example": "$$$"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://indira.place.com"
+          },
+          "latitude": {
+            "type": "string",
+            "example": "15.845245"
+          },
+          "longitude": {
+            "type": "string",
+            "example": "-85.2615478"
+          }
+        }
+      },
+      "registerLodge_req": {
+        "type": "object",
+        "properties": {
+          "hub_tag": {
+            "type": "string",
+            "example": "tmrndo"
+          },
+          "schema_type_tag": {
+            "type": "string",
+            "example": "lodge"
+          },
+          "name": {
+            "type": "string",
+            "example": "Hotel El Pacifico"
+          },
+          "description": {
+            "type": "string",
+            "example": "Located near and around the..."
+          },
+          "telephone": {
+            "type": "string",
+            "example": "6339-3065"
+          },
+          "email": {
+            "type": "string",
+            "example": "elpacif@gmail.com"
+          },
+          "price_range": {
+            "type": "string",
+            "example": "$$$$$"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://elpacif.place.com"
+          },
+          "latitude": {
+            "type": "string",
+            "example": "12.845245"
+          },
+          "longitude": {
+            "type": "string",
+            "example": "-82.2615478"
+          }
+        }
+      },
+      "registerWfall_req": {
+        "type": "object",
+        "properties": {
+          "hub_tag": {
+            "type": "string",
+            "example": "tmrndo"
+          },
+          "schema_type_tag": {
+            "type": "string",
+            "example": "wfall"
+          },
+          "name": {
+            "type": "string",
+            "example": "Catarata Río Macho"
+          },
+          "description": {
+            "type": "string",
+            "example": "Located near and around the..."
+          },
+          "latitude": {
+            "type": "string",
+            "example": "13.845245"
+          },
+          "longitude": {
+            "type": "string",
+            "example": "-83.2615478"
+          }
+        }
+      },
+      "registerPlace_res": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "example": "Place Created"
+          }
+        }
+      },
+      "login_req": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "contact@bijalapa.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "1234"
+          }
+        }
+      },
+      "login_res": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+              },
+              "email": {
+                "type": "string",
+                "example": "efgarro@bijalapa.com"
+              },
+              "hash": {
+                "type": "string",
+                "example": "2264bd2785c...308922462c13aeb"
+              },
+              "salt": {
+                "type": "string",
+                "example": "3938c02d4d3...5adef573adf8fab"
+              }
+            }
+          },
+          "token": {
+            "type": "string",
+            "example": "Bearer eyJhbGciOiJSUzI1Ni...5adef573adf8fab"
+          },
+          "expiresIn": {
+            "type": "string",
+            "example": "1h"
+          },
+          "message": {
+            "type": "string",
+            "example": "authenticated via .../login"
+          }
+        }
+      },
+      "user_res": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
           },
           "first_name": {
             "type": "string",
@@ -188,6 +865,26 @@
           "last_name": {
             "type": "string",
             "example": "Le Grand"
+          },
+          "email": {
+            "type": "string",
+            "example": "efgarro@bijalapa.com"
+          },
+          "hash": {
+            "type": "string",
+            "example": "2264bd2785c...308922462c13aeb"
+          },
+          "salt": {
+            "type": "string",
+            "example": "3938c02d4d3...5adef573adf8fab"
+          },
+          "user_role_name": {
+            "type": "string",
+            "example": "Subscriber"
+          },
+          "country_name": {
+            "type": "string",
+            "example": "New Zealand"
           },
           "image": {
             "type": "array",
@@ -204,6 +901,205 @@
                 }
               }
             }
+          }
+        }
+      },
+      "resta_res": {
+        "type": "object",
+        "properties": {
+          "resta_place_id": {
+            "type": "string",
+            "example": "8ac1c063-6758-475e-1372-49d8c30e4e00"
+          },
+          "hub_id": {
+            "type": "string",
+            "example": "53041461-3170-745a-e27c-08f141a2aabc"
+          },
+          "schema_type_id": {
+            "type": "string",
+            "example": "530c33f4-4ca7-39f9-1937-45522c90c8c1"
+          },
+          "name": {
+            "type": "string",
+            "example": "La Casona de Chayo"
+          },
+          "description": {
+            "type": "string",
+            "example": "Located near and around the..."
+          },
+          "telephone": {
+            "type": "string",
+            "example": "8339-3065"
+          },
+          "email": {
+            "type": "string",
+            "example": "contact@gmail.com"
+          },
+          "opening_hours": {
+            "type": "string",
+            "example": "7am to 5pm"
+          },
+          "price_range": {
+            "type": "string",
+            "example": "$$$"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://indira.place.com"
+          },
+          "latitude": {
+            "type": "string",
+            "example": "15.845245"
+          },
+          "longitude": {
+            "type": "string",
+            "example": "-85.2615478"
+          }
+        }
+      },
+      "lodge_res": {
+        "type": "object",
+        "properties": {
+          "lodge_place_id": {
+            "type": "string",
+            "example": "8ac1c063-6758-475e-1372-49d8c30e4e00"
+          },
+          "hub_id": {
+            "type": "string",
+            "example": "53041461-3170-745a-e27c-08f141a2aabc"
+          },
+          "schema_type_id": {
+            "type": "string",
+            "example": "530c33f4-4ca7-39f9-1937-45522c90c8c1"
+          },
+          "name": {
+            "type": "string",
+            "example": "Hotel El Pacifico"
+          },
+          "description": {
+            "type": "string",
+            "example": "Located near and around the..."
+          },
+          "telephone": {
+            "type": "string",
+            "example": "6339-3065"
+          },
+          "email": {
+            "type": "string",
+            "example": "elpacif@gmail.com"
+          },
+          "price_range": {
+            "type": "string",
+            "example": "$$$$$"
+          },
+          "url": {
+            "type": "string",
+            "example": "http://elpacif.place.com"
+          },
+          "latitude": {
+            "type": "string",
+            "example": "12.845245"
+          },
+          "longitude": {
+            "type": "string",
+            "example": "-82.2615478"
+          }
+        }
+      },
+      "wfall_res": {
+        "type": "object",
+        "properties": {
+          "wfall_place_id": {
+            "type": "string",
+            "example": "8ac1c063-6758-475e-1372-49d8c30e4e00"
+          },
+          "hub_id": {
+            "type": "string",
+            "example": "53041461-3170-745a-e27c-08f141a2aabc"
+          },
+          "schema_type_id": {
+            "type": "string",
+            "example": "530c33f4-4ca7-39f9-1937-45522c90c8c1"
+          },
+          "name": {
+            "type": "string",
+            "example": "Catarata Río Macho"
+          },
+          "description": {
+            "type": "string",
+            "example": "Located near and around the..."
+          },
+          "latitude": {
+            "type": "string",
+            "example": "13.845245"
+          },
+          "longitude": {
+            "type": "string",
+            "example": "-83.2615478"
+          }
+        }
+      },
+      "country_res": {
+        "type": "object",
+        "properties": {
+          "country_id": {
+            "type": "string",
+            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+          },
+          "country_name": {
+            "type": "string",
+            "example": "New Zealand"
+          }
+        }
+      },
+      "user_role_res": {
+        "type": "object",
+        "properties": {
+          "user_role_id": {
+            "type": "string",
+            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+          },
+          "user_role_name": {
+            "type": "string",
+            "example": "Editor"
+          }
+        }
+      },
+      "hub_res": {
+        "type": "object",
+        "properties": {
+          "hub_id": {
+            "type": "string",
+            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+          },
+          "region_id": {
+            "type": "string",
+            "example": "52cf38bf-d10d-d568-b4d5-5a8237dd09ca"
+          },
+          "hub_name": {
+            "type": "string",
+            "example": "Perez Zeledón"
+          },
+          "hub_tag": {
+            "type": "string",
+            "example": "perzel"
+          }
+        }
+      },
+      "schema_type_res": {
+        "type": "object",
+        "properties": {
+          "schema_type_id": {
+            "type": "string",
+            "example": "aa9b268e-4f5c-e461-f04b-259d9c31f8be"
+          },
+          "schema_type_name": {
+            "type": "string",
+            "example": "waterfalls"
+          },
+          "schema_type_tag": {
+            "type": "string",
+            "example": "wfall"
           }
         }
       }
