@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "Soy Costa Rica API",
-    "description": "Swagger Practice",
+    "description": "Full Stack Designer API Project",
     "contact": {
       "name": "efgarro",
       "email": "efgarro@yahoo.com"
@@ -11,17 +11,8 @@
   },
   "servers": [
     {
-      "url": "https://soy-crc-10-fsp-33-rest-api.azurewebsites.net",
-      "description": "Azure Site"
-    },
-    {
-      "url": "http://localhost:{port}",
-      "variables": {
-        "port": {
-          "default": "4000"
-        }
-      },
-      "description": "Local Dev Env"
+      "url": "https://api.soy-cr.com",
+      "description": "AWS Beanstalk Instance"
     }
   ],
   "paths": {
